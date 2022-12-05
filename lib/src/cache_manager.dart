@@ -281,4 +281,8 @@ class CacheManager implements BaseCacheManager {
   Future<int> getCacheSize() async {
     return await _store.getCacheSize();
   }
+
+  Future<String> getCahceSizeStr() async {
+    return await _store.getCacheSizeStr();
+  }
 }
