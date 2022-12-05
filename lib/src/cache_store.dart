@@ -200,4 +200,27 @@ class CacheStore {
     }
     return allLength;
   }
+
+  Future<String> getCacheSizeStr() async {
+    final cacheSizeInt = await getCacheSize();
+    return renderSize(cacheSizeInt);
+  }
+
+  static String renderSize(value) {
+    if (value == null) {
+      return '0.0';
+    }
+    List<String> unitArr = []
+      ..add('B')
+      ..add('K')
+      ..add('M')
+      ..add('G');
+    int index = 0;
+    while (value > 1024) {
+      index++;
+      value = value / 1024;
+    }
+    String size = value.toStringAsFixed(2);
+    return size + unitArr[index];
+  }
 }
